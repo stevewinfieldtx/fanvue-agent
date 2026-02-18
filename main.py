@@ -75,11 +75,23 @@ async def main_loop():
         logging.error(f"Error during initial run: {e}")
     
     # Keep the script running
-    try:
-        while True:
-            await asyncio.sleep(1000)
-    except (KeyboardInterrupt, SystemExit):
-        pass
+    # With FastAPI, we don't need this infinite loop if we run uvicorn. 
+    # But since we want to run both... 
+    # Strategy: Start Uvicorn, pass the scheduler to it or run scheduler in background.
+    
+    # Better approach for this simple script:
+    # Run Uvicorn as the main process, and start the scheduler on startup.
+    import uvicorn
+    from src.web.server import app
+    
+    # Attach scheduler to app state to prevent garbage collection
+    app.state.scheduler = scheduler
+    
+    # Start Uvicorn
+    # Note: This is a blocking call, so we do it last.
+    config = uvicorn.Config(app, host="0.0.0.0", port=8000, log_level="info")
+    server = uvicorn.Server(config)
+    await server.serve()
 
 if __name__ == "__main__":
     asyncio.run(main_loop())

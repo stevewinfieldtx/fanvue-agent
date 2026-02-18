@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FanVue Agent Dashboard</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f4f9; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        textarea { width: 100%; height: 300px; padding: 10px; margin-top: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        button:hover { background-color: #0056b3; }
+        .actions { margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px; }
+        .btn-danger { background-color: #dc3545; }
+        .btn-danger:hover { background-color: #c82333; }
+        h1 { color: #333; }
+        .status { margin-bottom: 20px; padding: 10px; background: #e9ecef; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FanVue Agent Control</h1>
+        
+        <div class="status">
+            <strong>Status:</strong> Agent is Running
+        </div>
+
+        <form action="/update_prompt" method="post">
+            <h3>📝 System Prompt / Instructions</h3>
+            <p>Edit the core persona and instructions here. The agent reads this for every new post.</p>
+            <textarea name="system_prompt">{{ system_prompt }}</textarea>
+            <button type="submit">💾 Save Instructions</button>
+        </form>
+
+        <div class="actions">
+            <h3>⚡ Manual Actions</h3>
+            <form action="/trigger_routine" method="post">
+                <button type="submit" class="btn-danger">🚀 Run Daily Routine NOW</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -6,3 +6,6 @@ playwright
 runware
 aiohttp
 python-multipart
+fastapi
+uvicorn
+jinja2
