@@ -1,0 +1,8 @@
+openai
+requests
+python-dotenv
+apscheduler
+playwright
+runware
+aiohttp
+python-multipart
