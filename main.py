@@ -7,7 +7,14 @@ from src.platforms.fanvue import FanVueClient
 from src.platforms.facebook_bot import FacebookBot
 
 # Setup logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO, 
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("agent.log"),
+        logging.StreamHandler()
+    ]
+)
 
 async def daily_routine():
     logging.info("Starting Daily Routine...")

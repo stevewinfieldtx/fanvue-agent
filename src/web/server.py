@@ -40,5 +40,15 @@ async def trigger_routine(background_tasks: BackgroundTasks):
     background_tasks.add_task(daily_routine)
     return RedirectResponse(url="/", status_code=303)
 
+@app.get("/logs")
+async def get_logs():
+    try:
+        with open("agent.log", "r") as f:
+            # Return last 100 lines
+            lines = f.readlines()
+            return {"logs": lines[-100:]}
+    except FileNotFoundError:
+        return {"logs": ["Log file not found."]}
+
 def start_server():
     uvicorn.run(app, host="0.0.0.0", port=8000)
