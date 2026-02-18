@@ -16,4 +16,6 @@ RUN playwright install chromium
 
 COPY . .
 
+ENV PYTHONPATH=/app
+
 CMD ["python", "main.py"]

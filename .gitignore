@@ -41,5 +41,5 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# Brain/Memory (if located here)
-brain/
+# Brain/Memory (Removed to avoid ignoring src/brain)
+
